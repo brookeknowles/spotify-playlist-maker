@@ -3,7 +3,7 @@
 REST web app made with python and flask that allows user to create a Spotify playlist of the top 20 trending songs on Last.fm via the Spotify and Last.fm APIs. 
 
 Issues to fix: 
-- although 20 songs are retreived from last.fm charts, only first 18/19 songs actually get added to spotify playlist??
+- Spotify API doesnt seem to return results if song titles has special characters (e.g. Ain't Shit by Doja Cat), and will not return any song after that even if normal characters. Need to get rid of the punctuation after getting top songs from last.fm, before searching spotify.
 
 Todo: 
 - add functionality to also be able to make playlist from top songs on billboard/rolling stone/NZtop40 etc
