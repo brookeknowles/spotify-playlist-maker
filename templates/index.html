@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Spotify App</title>
+</head>
+<body>
+
+<div class="topnav">
+    <a href="/top">Top</a>
+    <a href="/create">Create</a>
+    <a href="/view">View</a>
+</div>
+
+<div id="content">
+    {%if template == 'top'%}
+    <form method="POST">
+        <h2>Top 20 songs</h2>
+    <table>
+        <tr>
+            <th>Song</th>
+            <th>Artist</th>
+        </tr>
+        {%for song, artist in topsongs.items()%}
+            <tr>
+                <td>{{song}}</td>
+                <td>{{artist}}</td>
+            </tr>
+        {%endfor%}
+    </table>
+    <br>
+    <input id="btn" type="submit" value="Add Songs"></input>
+    </form>
+
+    {%elif template == 'view'%}
+
+    <h2>Songs In Playlist</h2>
+    <table>
+        <tr>
+            <th>Song</th>
+        </tr>
+        {%for song in songs %}
+            <tr>
+                <td>{{song}}</td>
+            </tr>
+        {%endfor%}
+    </table>
+    <br>
+
+    {%elif template == 'create'%}
+    <form method="POST">
+        <h2>Create A Playlist</h2>
+        <div id="inline">
+            <label id="mylabel">Playlist Name: </label>
+            <input type="text" name="playlist_name"></input>
+        </div><br>
+        <div id="inline">
+            <label id="mylabel">Description: </label>
+            <textarea cols="20" rows="3" name="playlist_description"></textarea>
+        </div><br>
+        <input id="btn" type="submit" value="Create Playlist"></input>
+    </form>
+
+    {%endif%}
+</div>
+
+</body>
+</html>
