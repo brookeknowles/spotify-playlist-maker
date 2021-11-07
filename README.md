@@ -13,6 +13,7 @@ To run:
 - generate playlist-modify-public spotify token from https://developer.spotify.com/console/post-playlists/
 - return generated token in spotify_token() in api_keys_tokens.py
 - run on command line:
+
     > set FLASK_APP=app
+    
     > flask run
-     * Running on http://127.0.0.1:5000/
