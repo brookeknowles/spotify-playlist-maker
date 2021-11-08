@@ -17,7 +17,7 @@ class LastFmSpotify:
         self.uris = []
 
     def strip_punctuation(self, input_str):
-        punctuation = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        punctuation = '''{};:'"\,<>/@#$%^&*_~'''
         for element in input_str:
             if element in punctuation:
                 input_str = input_str.replace(element, "")
@@ -32,7 +32,7 @@ class LastFmSpotify:
         res = response.json()
         song_info = dict()
         for item in res['tracks']['track']:
-            song = item['name'].title()
+            song = item['name']
             song = self.strip_punctuation(song)
             artist = item['artist']['name'].title()
             song_info[song] = artist
