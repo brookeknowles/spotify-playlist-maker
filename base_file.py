@@ -2,7 +2,6 @@ import json
 import requests
 import api_keys_tokens
 import sys
-from pprint import pprint
 
 
 class LastFmSpotify:
@@ -17,6 +16,13 @@ class LastFmSpotify:
         self.song_info = {}
         self.uris = []
 
+    def strip_punctuation(self, input_str):
+        punctuation = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        for element in input_str:
+            if element in punctuation:
+                input_str = input_str.replace(element, "")
+        return input_str
+
     def fetch_songs_from_lastfm(self):
         params = {'limit': 20, 'api_key': self.api_key}
         url = f'http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&format=json'
@@ -27,6 +33,7 @@ class LastFmSpotify:
         song_info = dict()
         for item in res['tracks']['track']:
             song = item['name'].title()
+            song = self.strip_punctuation(song)
             artist = item['artist']['name'].title()
             song_info[song] = artist
         return song_info
@@ -87,6 +94,3 @@ class LastFmSpotify:
         print("Error: ", err)
         sys.exit(0)
 
-
-# d = LastFmSpotify()
-# d.fetch_songs_from_lastfm()
